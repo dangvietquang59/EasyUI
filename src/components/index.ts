@@ -1,3 +1,3 @@
 import Button from "./Button.vue";
-
-export {Button}
+import Dropdown from "./Dropdown.vue";
+export { Button, Dropdown };

@@ -1,9 +1,11 @@
-import { type App } from 'vue';
-import Button from './components/Button.vue';
-import './assets/tailwind.css';
+import { type App } from "vue";
+import Button from "./components/Button.vue";
+import Dropdown from "./components/Dropdown.vue";
+import "./assets/tailwind.css";
 
 const components = {
   VButton: Button,
+  VDropdown: Dropdown,
 };
 
 const install = (app: App) => {
@@ -13,4 +15,4 @@ const install = (app: App) => {
 };
 
 export default { install };
-export { Button as VButton }; 
+export { Button as VButton, Dropdown as VDropdown };

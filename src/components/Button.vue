@@ -5,6 +5,7 @@
       `btn-${variant}`,
       `btn-${size}`,
       { 'btn-disabled': disabled },
+      className,
     ]"
     :disabled="disabled"
   >
@@ -13,25 +14,36 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'VButton',
+  name: "VButton",
   props: {
     variant: {
       type: String,
-      default: 'primary',
+      default: "primary",
       validator: (value: string) =>
-        ['primary', 'secondary', 'danger', 'success', 'warning', 'outline'].includes(value),
+        [
+          "primary",
+          "secondary",
+          "danger",
+          "success",
+          "warning",
+          "outline",
+        ].includes(value),
     },
     size: {
       type: String,
-      default: 'md',
-      validator: (value: string) => ['sm', 'md', 'lg'].includes(value),
+      default: "md",
+      validator: (value: string) => ["sm", "md", "lg"].includes(value),
     },
     disabled: {
       type: Boolean,
       default: false,
+    },
+    className: {
+      type: String,
+      default: "",
     },
   },
 });
@@ -42,10 +54,10 @@ export default defineComponent({
   @apply font-semibold rounded focus:outline-none hover:opacity-90 min-h-10 hover:border-transparent duration-300 transition-all;
 }
 .btn-primary {
-  @apply bg-blue-600 text-white ;
+  @apply bg-blue-600 text-white;
 }
 .btn-secondary {
-  @apply bg-gray-600 text-white ;
+  @apply bg-gray-600 text-white;
 }
 .btn-danger {
   @apply bg-red-600 text-white;
