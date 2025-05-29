@@ -23,21 +23,35 @@
         />
       </svg>
     </div>
-
-    <ul
-      v-if="isOpen"
-      class="absolute top-[100%] z-10 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto"
-    >
-      <li
-        v-for="option in options"
-        :key="option.value"
-        @click.stop="selectOption(option.value)"
-        class="px-4 py-2 cursor-pointer hover:bg-blue-100 text-gray-700"
-        :class="{ 'bg-blue-50 font-semibold': option.value === value }"
+    <transition name="dropdown-fade">
+      <ul
+        v-if="isOpen"
+        class="absolute top-[100%] z-10 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto"
       >
-        {{ option.label }}
-      </li>
-    </ul>
+        <li
+          v-for="option in options"
+          :key="option.value"
+          @click.stop="selectOption(option.value)"
+          class="px-4 py-2 cursor-pointer hover:bg-gray-100 text-gray-700"
+          :class="{ 'relative font-semibold': option.value === modelValue }"
+        >
+          {{ option.label }}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 absolute right-2 top-1/2 -translate-y-1/2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            v-if="option.value === modelValue"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8.25 8.25a1 1 0 01-1.414 0l-4.25-4.25a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </li>
+      </ul>
+    </transition>
   </div>
 </template>
 
@@ -116,5 +130,20 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* optional style */
+.dropdown-fade-enter-active,
+.dropdown-fade-leave-active {
+  @apply transition-all duration-200;
+}
+.dropdown-fade-enter-from {
+  @apply opacity-0 -translate-y-2;
+}
+.dropdown-fade-enter-to {
+  @apply opacity-100 translate-y-0;
+}
+.dropdown-fade-leave-from {
+  @apply opacity-100 translate-y-0;
+}
+.dropdown-fade-leave-to {
+  @apply opacity-0 -translate-y-2;
+}
 </style>
